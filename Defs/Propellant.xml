@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingDef ParentName="ResourceBase">
+		<thingClass>CombatExtended.AmmoThing</thingClass>
+		<defName>AIE-Propellant</defName>
+		<label>propellant</label>
+		<description>A highly flammable solid compound synthesized from cellulose, used to propel projectiles in conventional firearms.</description>
+		<tickerType>Normal</tickerType>
+		<graphicData>
+			<texPath>Propellant</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.85</drawSize>
+		</graphicData>
+		<stackLimit>75</stackLimit>
+		<healthAffectsPrice>false</healthAffectsPrice>
+		<statBases>
+			<MaxHitPoints>50</MaxHitPoints>
+			<Mass>0.26</Mass>
+			<Bulk>0.25</Bulk>
+			<Flammability>2.0</Flammability>
+			<DeteriorationRate>1.0</DeteriorationRate>
+		</statBases>
+		<thingCategories>
+			<li>Volatiles</li>
+		</thingCategories>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>0.7</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveExpandPerStackcount>0.0</explosiveExpandPerStackcount>
+				<startWickHitPointsPercent>0.5</startWickHitPointsPercent>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<explodeOnKilled>True</explodeOnKilled>
+				<wickTicks>60~90</wickTicks>
+			</li>
+		</comps>
+	</ThingDef>
+	
+	<RecipeDef>
+		<defName>AIE-Make_PropellantFromCotton</defName>
+		<label>make propellant from cotton</label>
+		<description>Make a batch of propellant by chemically treating cellulose in cotton.</description>
+		<jobString>Refining propellant from cotton.</jobString>
+		<effectWorking>Cremate</effectWorking>
+		<soundWorking>Recipe_Cremate</soundWorking>
+		<workAmount>2000</workAmount>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Cloth</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Cloth</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<AIE-Propellant>10</AIE-Propellant>
+		</products>
+		<recipeUsers>
+			<li>BiofuelRefinery</li>
+		</recipeUsers>
+	</RecipeDef>
+	
+	<RecipeDef>
+		<defName>AIE-Make_PropellantFromCotton_CraftingSpot</defName>
+		<label>make propellant from cotton</label>
+		<description>Make a batch of propellant by chemically treating cellulose in cotton. Due to lack of propper equipment the yield is reduced and the task is more time consuming.</description>
+		<jobString>Refining propellant from cotton.</jobString>
+		<effectWorking>Cremate</effectWorking>
+		<soundWorking>Recipe_Cremate</soundWorking>
+		<workAmount>500</workAmount>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Cloth</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Cloth</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<AIE-Propellant>5</AIE-Propellant>
+		</products>
+		<recipeUsers>
+			<li>CraftingSpot</li>
+		</recipeUsers>
+	</RecipeDef>
+	
+	<ThingCategoryDef>
+		<defName>Volatiles</defName>
+		<label>volatiles</label>
+		<parent>Manufactured</parent>
+		<iconPath>Things/Item/Resource/Chemfuel</iconPath>
+	</ThingCategoryDef>
+</Defs>

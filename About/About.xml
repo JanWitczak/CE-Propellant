@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>Combat Extended Propellant</name>
+	<author>Azuraal</author>
+	<supportedVersions>
+		<li>1.3</li>
+		<li>1.4</li>
+		<li>1.5</li>
+	</supportedVersions>
+	<packageId>azuraal.ammoisexpensive</packageId>
+	<modDependencies>
+		<li>
+			<packageId>CETeam.CombatExtended</packageId>
+			<displayName>Combat Extended</displayName>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/2890901044</steamWorkshopUrl>
+		</li>
+		<li>
+			<packageId>imranfish.xmlextensions</packageId>
+			<displayName>XML Extensions</displayName>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/2574315206</steamWorkshopUrl>
+		</li>
+	</modDependencies>
+	<loadAfter>
+		<li>CETeam.CombatExtended</li>
+		<li>imranfish.xmlextensions</li>
+	</loadAfter>
+	<description>Makes Combat Extended industrial tech more time consuming to manufacture, and require propellant to craft.</description>
+</ModMetaData>
