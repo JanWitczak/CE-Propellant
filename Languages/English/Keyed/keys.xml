@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	<SteelFactor>Steel Factor</SteelFactor>
+	<PropellantFactor>Propellant Factor</PropellantFactor>
+	<OtherFactor>Other Factor</OtherFactor>
+	<WorkFactor>Work Factor</WorkFactor>
+	<MarketValueFactor>Market Value Factor</MarketValueFactor>
+	<TraderSmallAmmoCountFactor>Trader Small Ammo Count Factor</TraderSmallAmmoCountFactor>
+	<TraderMediumAmmoCountFactor>Trader Medium Ammo Count Factor</TraderMediumAmmoCountFactor>
+	<TraderHeavyAmmoCountFactor>Trader Heavy Ammo Count Factor</TraderHeavyAmmoCountFactor>
+</LanguageData>

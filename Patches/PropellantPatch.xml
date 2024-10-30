@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/RecipeDef[not(@Abstract)][@ParentName="AmmoRecipeBase" or @ParentName="AdvancedAmmoRecipeBase" or @ParentName="LauncherAmmoRecipeBase"]/ingredients</xpath>
+		<value>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>AIE-Propellant</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</value>
+	</Operation>
+</Patch>
