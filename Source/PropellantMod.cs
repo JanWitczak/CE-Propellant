@@ -67,7 +67,6 @@ namespace Propellant
 	[StaticConstructorOnStartup]
 	static class AmmoProcessor
 	{
-		private static Dictionary<string, List<IngredientCount>> BaseIngredientCount = new Dictionary<string, List<IngredientCount>>();
 		static AmmoProcessor()
 		{
 			ThingDef propellant = DefDatabase<ThingDef>.GetNamed("AIE-Propellant");
