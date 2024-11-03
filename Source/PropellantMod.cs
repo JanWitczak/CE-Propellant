@@ -26,9 +26,10 @@ namespace Propellant
 			Settings.OtherFactor = (float)Math.Round(settingsMenu.Slider(Settings.OtherFactor, 0.1f, 5.0f), 1);
 			settingsMenu.Label($"{"WorkFactor".Translate()}: {Settings.WorkFactor}");
 			Settings.WorkFactor = (float)Math.Round(settingsMenu.Slider(Settings.WorkFactor, 0.1f, 5.0f), 1);
+			settingsMenu.GapLine(25);
 			settingsMenu.Label($"{"MarketValueFactor".Translate()}: {Settings.MarketValueFactor}");
 			Settings.MarketValueFactor = (float)Math.Round(settingsMenu.Slider(Settings.MarketValueFactor, 0.1f, 5.0f), 1);
-			settingsMenu.Gap(gapHeight: 50);
+			settingsMenu.GapLine(25);
 			settingsMenu.Label($"{"TraderSmallAmmoCountFactor".Translate()}: {Settings.TraderSmallAmmoCountFactor}");
 			Settings.TraderSmallAmmoCountFactor = (float)Math.Round(settingsMenu.Slider(Settings.TraderSmallAmmoCountFactor, 0.5f, 5.0f), 1);
 			settingsMenu.Label($"{"TraderMediumAmmoCountFactor".Translate()}: {Settings.TraderMediumAmmoCountFactor}");
