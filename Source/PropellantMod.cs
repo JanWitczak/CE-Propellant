@@ -76,7 +76,14 @@ namespace Propellant
 			{
 				if (recipeDef.ingredients.Any(x => x.IsFixedIngredient && x.FixedIngredient == propellant))
 				{
-					float baseSteelCount = recipeDef.ingredients.Find(x => x.IsFixedIngredient && x.FixedIngredient == ThingDefOf.Steel).GetBaseCount();
+					float basePropellantCount;
+					IngredientCount SteelCount = recipeDef.ingredients.Find(x => x.IsFixedIngredient && x.FixedIngredient == ThingDefOf.Steel);
+					if (SteelCount == default(IngredientCount))
+					{
+						Log.Warning($"Recipe {recipeDef.defName} does not use steel, setting base propellant count to 10.");
+						basePropellantCount = 10.0f;
+					}
+					else basePropellantCount = SteelCount.GetBaseCount();
 					foreach (IngredientCount ingredient in recipeDef.ingredients)
 					{
 						if (ingredient.IsFixedIngredient && ingredient.FixedIngredient == ThingDefOf.Steel)
@@ -85,7 +92,7 @@ namespace Propellant
 						}
 						else if (ingredient.IsFixedIngredient && ingredient.FixedIngredient == propellant)
 						{
-							ingredient.SetBaseCount(baseSteelCount * PropellantMod.Settings.PropellantFactor);
+							ingredient.SetBaseCount(basePropellantCount * PropellantMod.Settings.PropellantFactor);
 						}
 						else
 						{
