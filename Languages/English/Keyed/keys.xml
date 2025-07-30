@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
-	<SteelFactor>Steel Factor</SteelFactor>
+	<MetalFactor>Metal Factor</MetalFactor>
 	<PropellantFactor>Propellant Factor</PropellantFactor>
 	<OtherFactor>Other Factor</OtherFactor>
 	<WorkFactor>Work Factor</WorkFactor>

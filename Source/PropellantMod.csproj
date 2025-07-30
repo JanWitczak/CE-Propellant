@@ -2,22 +2,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
     	<OutputType>Library</OutputType>
-		<TargetFramework>net472</TargetFramework>
+		<TargetFramework>net48</TargetFramework>
 		<Deterministic>true</Deterministic>
 		<Configuration>Release</Configuration>
 		<DebugType>none</DebugType>
 		<Optimize>true</Optimize>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<BaseOutputPath>..\Assemblies</BaseOutputPath>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <IsPublishable>False</IsPublishable>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-	  <IsPublishable>False</IsPublishable>
+		<Configurations>Release</Configurations>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.*" />
+		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.*" />
 	</ItemGroup>
 </Project>

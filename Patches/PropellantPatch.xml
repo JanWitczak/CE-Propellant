@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/RecipeDef[not(@Abstract)][@ParentName="AmmoRecipeBase" or @ParentName="AdvancedAmmoRecipeBase" or @ParentName="LauncherAmmoRecipeBase"]/ingredients</xpath>
+		<xpath>Defs/RecipeDef[@ParentName="AmmoRecipeBase" or @ParentName="AdvancedAmmoRecipeBase" or @ParentName="ArtilleryAmmoRecipeBase" or @ParentName="LauncherAmmoRecipeBase" or @ParentName="CannonAmmoRecipeBase" or @ParentName="ChargeAmmoRecipeBase"]/ingredients</xpath>
 		<value>
 			<li>
 				<filter>

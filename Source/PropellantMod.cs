@@ -18,8 +18,8 @@ namespace Propellant
 		{
 			Listing_Standard settingsMenu = new Listing_Standard();
 			settingsMenu.Begin(inRect);
-			settingsMenu.Label($"{"SteelFactor".Translate()}: {Settings.SteelFactor}");
-			Settings.SteelFactor = (float)Math.Round(settingsMenu.Slider(Settings.SteelFactor, 0.1f, 5.0f), 1);
+			settingsMenu.Label($"{"MetalFactor".Translate()}: {Settings.MetalFactor}");
+			Settings.MetalFactor = (float)Math.Round(settingsMenu.Slider(Settings.MetalFactor, 0.1f, 5.0f), 1);
 			settingsMenu.Label($"{"PropellantFactor".Translate()}: {Settings.PropellantFactor}");
 			Settings.PropellantFactor = (float)Math.Round(settingsMenu.Slider(Settings.PropellantFactor, 0.1f, 5.0f), 1);
 			settingsMenu.Label($"{"OtherFactor".Translate()}: {Settings.OtherFactor}");
@@ -45,7 +45,7 @@ namespace Propellant
 	}
 	public class PropellantSettings : ModSettings
 	{
-		public float SteelFactor = 1.0f;
+		public float MetalFactor = 1.0f;
 		public float PropellantFactor = 0.5f;
 		public float OtherFactor = 1.0f;
 		public float WorkFactor = 2.0f;
@@ -55,7 +55,7 @@ namespace Propellant
 		public float TraderHeavyAmmoCountFactor = 1.0f;
 		public override void ExposeData()
 		{
-			Scribe_Values.Look(ref SteelFactor, "SteelFactor", defaultValue: 1.0f);
+			Scribe_Values.Look(ref MetalFactor, "SteelFactor", defaultValue: 1.0f);
 			Scribe_Values.Look(ref PropellantFactor, "PropellantFactor", defaultValue: 0.5f);
 			Scribe_Values.Look(ref OtherFactor, "OtherFactor", defaultValue: 1.0f);
 			Scribe_Values.Look(ref WorkFactor, "WorkFactor", defaultValue: 2.0f);
@@ -76,27 +76,31 @@ namespace Propellant
 			{
 				if (recipeDef.ingredients.Any(x => x.IsFixedIngredient && x.FixedIngredient == propellant))
 				{
-					float basePropellantCount;
+					float basePropellantCount = 0;
 					IngredientCount SteelCount = recipeDef.ingredients.Find(x => x.IsFixedIngredient && x.FixedIngredient == ThingDefOf.Steel);
-					if (SteelCount == default(IngredientCount))
+					IngredientCount PlasteelCount = recipeDef.ingredients.Find(x => x.IsFixedIngredient && x.FixedIngredient == ThingDefOf.Plasteel);
+					IngredientCount UraniumCount = recipeDef.ingredients.Find(x => x.IsFixedIngredient && x.FixedIngredient == ThingDefOf.Uranium);
+					if (SteelCount != default(IngredientCount)) basePropellantCount += SteelCount.GetBaseCount();
+					if (PlasteelCount != default(IngredientCount)) basePropellantCount += PlasteelCount.GetBaseCount();
+					if (UraniumCount != default(IngredientCount)) basePropellantCount += UraniumCount.GetBaseCount();
+					if (basePropellantCount == 0)
 					{
-						Log.Warning($"Recipe {recipeDef.defName} does not use steel, setting base propellant count to 10.");
+						Log.Warning($"Recipe {recipeDef.defName} does not use steel, plasteel, nor uranium, setting base propellant count to 10.");
 						basePropellantCount = 10.0f;
 					}
-					else basePropellantCount = SteelCount.GetBaseCount();
 					foreach (IngredientCount ingredient in recipeDef.ingredients)
 					{
-						if (ingredient.IsFixedIngredient && ingredient.FixedIngredient == ThingDefOf.Steel)
+						if (ingredient.IsFixedIngredient && (ingredient.FixedIngredient == ThingDefOf.Steel || ingredient.FixedIngredient == ThingDefOf.Plasteel || ingredient.FixedIngredient == ThingDefOf.Uranium))
 						{
-							ingredient.SetBaseCount(ingredient.GetBaseCount() * PropellantMod.Settings.SteelFactor);
+							ingredient.SetBaseCount(Mathf.Round(ingredient.GetBaseCount() * PropellantMod.Settings.MetalFactor));
 						}
 						else if (ingredient.IsFixedIngredient && ingredient.FixedIngredient == propellant)
 						{
-							ingredient.SetBaseCount(basePropellantCount * PropellantMod.Settings.PropellantFactor);
+							ingredient.SetBaseCount(Mathf.Round(basePropellantCount * PropellantMod.Settings.PropellantFactor));
 						}
 						else
 						{
-							ingredient.SetBaseCount(ingredient.GetBaseCount() * PropellantMod.Settings.OtherFactor);
+							ingredient.SetBaseCount(Mathf.Round(ingredient.GetBaseCount() * PropellantMod.Settings.OtherFactor));
 						}
 					}
 					recipeDef.workAmount *= PropellantMod.Settings.WorkFactor;
